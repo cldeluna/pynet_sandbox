@@ -2,6 +2,8 @@
 
 from __future__ import print_function, unicode_literals
 
+import re
+
 def print_header(lesson):
     print("\n")
     print("="*80)
@@ -9,17 +11,41 @@ def print_header(lesson):
     print("="*80)
     print("\n")
 
+    return lesson
+
+
+def enter_ip():
+
+    try:
+        #Python 2
+        ip = raw_input("Enter IP Address: ")
+    except NameError:
+        #Python 3
+        ip = input("Enter IP Address: ")
+
+    validate_ip(ip)
+    return ip
+
+
+def validate_ip(ip):
+    pat = re.compile(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
+
+    test = False
+    if pat.match(ip):
+        test = True
+        print("Acceptable ip address")
+    else:
+        test = False
+        print("Unacceptable ip address")
+        enter_ip()
+
+    return test
 
 def main():
     # Lesson 1
     print_header("Lesson 1")
 
-    try:
-        #Python 2
-        ip1 = raw_input("Enter IP Address 1: ")
-    except NameError:
-            #Python 3
-            ip1 = input("Enter IP Address 1: ")
+    ip1 = enter_ip()
 
     ip2 = "1.1.1.1"
     ip3 = "3.3.3.3"

@@ -4,6 +4,7 @@ import re
 def test_print_header():
     assert "Testing123" in less1.print_header("Testing123")
     assert "Lesson Separator" in less1.print_header("Lesson Separator")
+    assert "-----" in less1.print_header("-----")
 
 
 # def test_enter_ip():
